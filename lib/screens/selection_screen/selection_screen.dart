@@ -56,11 +56,13 @@ class SelectionScreen extends StatelessWidget {
                   child: authScreenController.concerns == null
                       ? const Center(child: CircularProgressIndicator())
                       : ListView.builder(
+                          itemCount: authScreenController.concerns?.length,
                           itemBuilder: (BuildContext context, index) {
-                          return ConcernsItem(
-                              // index: index,
-                              head: authScreenController.concerns?[index].head);
-                        }))
+                            return ConcernsItem(
+                                // index: index,
+                                head:
+                                    authScreenController.concerns?[index].head);
+                          }))
             ]),
             const ButtonGetStarted(),
             // const SizedBox(height: 48)
