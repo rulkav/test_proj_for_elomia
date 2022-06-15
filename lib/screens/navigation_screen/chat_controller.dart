@@ -33,7 +33,6 @@ class ChatController extends GetxController {
   @override
   void onInit() async {
     // TODO: implement onInit
-    // await getChatMessages();
     super.onInit();
   }
 }

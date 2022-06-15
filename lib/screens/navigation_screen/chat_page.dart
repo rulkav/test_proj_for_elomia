@@ -156,94 +156,99 @@ class _AnimatedDotsState extends State<AnimatedDots> {
         doAnimate = chatController.editingText == true ? true : false;
         Future.delayed(const Duration(milliseconds: 100), () => animate());
       }
-      return GestureDetector(
-        onTap: () {
-          doAnimate = !doAnimate;
-          animate();
-        },
-        child: Container(
-            // color: Colors.amber,
-            padding: const EdgeInsets.all(1),
-            width: 40,
-            height: 23,
-            margin: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15), color: cMilkWhite),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AnimatedContainer(
-                  duration: Duration(milliseconds: durationAnimation),
-                  onEnd: () => setState(() {
-                    if (doAnimate) {
-                      if (doAnimate && dot1Index < 4) {
-                        dot1Index = dot1Index + 1;
+      return Padding(
+        padding: const EdgeInsets.only(left: 12.0),
+        child: GestureDetector(
+          onTap: () {
+            doAnimate = !doAnimate;
+            animate();
+          },
+          child: Container(
+              // color: Colors.amber,
+              padding: const EdgeInsets.all(1),
+              width: 40,
+              height: 23,
+              margin: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15), color: cMilkWhite),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: durationAnimation),
+                    onEnd: () => setState(() {
+                      if (doAnimate) {
+                        if (doAnimate && dot1Index < 4) {
+                          dot1Index = dot1Index + 1;
+                        }
+                        onDot1Animate = (dot1Index == 4) ? false : true;
+                        if (dot1Index == 2 && !onDot2Animate) {
+                          dot2Index = 1;
+                          onDot2Animate = true;
+                        }
                       }
-                      onDot1Animate = (dot1Index == 4) ? false : true;
-                      if (dot1Index == 2 && !onDot2Animate) {
-                        dot2Index = 1;
-                        onDot2Animate = true;
-                      }
-                    }
-                  }),
-                  alignment: alignment[dot1Index],
-                  height: 13,
-                  child: Container(
-                    width: 6,
-                    height: 6,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6), color: cGrey),
+                    }),
+                    alignment: alignment[dot1Index],
+                    height: 13,
+                    child: Container(
+                      width: 6,
+                      height: 6,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6), color: cGrey),
+                    ),
                   ),
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: durationAnimation),
-                  onEnd: () => setState(() {
-                    if (doAnimate) {
-                      if (doAnimate && dot2Index < 4) {
-                        dot2Index = dot2Index + 1;
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: durationAnimation),
+                    onEnd: () => setState(() {
+                      if (doAnimate) {
+                        if (doAnimate && dot2Index < 4) {
+                          dot2Index = dot2Index + 1;
+                        }
+                        onDot2Animate = (dot2Index == 4) ? false : true;
+                        if (dot2Index == 2 && !onDot3Animate) {
+                          dot3Index = 1;
+                          onDot3Animate = true;
+                        }
                       }
-                      onDot2Animate = (dot2Index == 4) ? false : true;
-                      if (dot2Index == 2 && !onDot3Animate) {
-                        dot3Index = 1;
-                        onDot3Animate = true;
-                      }
-                    }
-                  }),
-                  alignment: alignment[dot2Index],
-                  height: 13,
-                  child: Container(
-                    width: 6,
-                    height: 6,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6), color: cGrey),
+                    }),
+                    alignment: alignment[dot2Index],
+                    height: 13,
+                    child: Container(
+                      width: 6,
+                      height: 6,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6), color: cGrey),
+                    ),
                   ),
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: durationAnimation),
-                  onEnd: () => setState(() {
-                    if (doAnimate) {
-                      if (doAnimate && dot3Index < 4) {
-                        dot3Index = dot3Index + 1;
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: durationAnimation),
+                    onEnd: () => setState(() {
+                      if (doAnimate) {
+                        if (doAnimate && dot3Index < 4) {
+                          dot3Index = dot3Index + 1;
+                        }
+                        onDot3Animate = (dot3Index == 4) ? false : true;
+                        if (dot1Index == 4 &&
+                            dot2Index == 4 &&
+                            dot3Index == 4) {
+                          dot1Index = 1;
+                          onDot1Animate = true;
+                        }
                       }
-                      onDot3Animate = (dot3Index == 4) ? false : true;
-                      if (dot1Index == 4 && dot2Index == 4 && dot3Index == 4) {
-                        dot1Index = 1;
-                        onDot1Animate = true;
-                      }
-                    }
-                  }),
-                  alignment: alignment[dot3Index],
-                  height: 13,
-                  child: Container(
-                    width: 6,
-                    height: 6,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6), color: cGrey),
+                    }),
+                    alignment: alignment[dot3Index],
+                    height: 13,
+                    child: Container(
+                      width: 6,
+                      height: 6,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6), color: cGrey),
+                    ),
                   ),
-                ),
-              ],
-            )),
+                ],
+              )),
+        ),
       );
     });
   }
